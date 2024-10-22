@@ -4,7 +4,7 @@
 #include <range/v3/view/transform.hpp>
 
 using ranges::accumulate;
-using ranges::views::transform;
+using ranges::view::transform;
 
 const std::map<std::string, uint> SCORE_MAP_1 = {
     { "A X", 4 }, { "A Y", 8 }, { "A Z", 3 }, { "B X", 1 }, { "B Y", 5 },

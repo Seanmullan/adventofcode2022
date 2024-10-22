@@ -12,14 +12,16 @@
 using ranges::accumulate;
 using ranges::back;
 using ranges::to;
-using ranges::actions::sort;
+using ranges::action::sort;
+using ranges::view::chunk_by;
+using ranges::view::filter;
 using ranges::view::take_last;
-using ranges::views::chunk_by;
-using ranges::views::filter;
-using ranges::views::transform;
+using ranges::view::transform;
 
 int main()
 {
+    const auto inputs = readStdIn();
+
     const auto group_inputs = [](const auto& inputs) {
         return inputs | chunk_by([](const auto& curr, const auto& next) {
                    return !curr.empty() && !next.empty();
@@ -28,7 +30,7 @@ int main()
     };
 
     const auto calories_per_elf =
-        group_inputs(readStdIn()) | transform([](const auto& calories) {
+        group_inputs(inputs) | transform([](const auto& calories) {
             return accumulate(
                 calories | transform([](const auto& calorie) { return std::stoi(calorie); }), 0);
         }) |
